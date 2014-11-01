@@ -2,7 +2,7 @@
 #
 #   Author: Edlin(LIN Junhao) edlinlink@qq.com
 #   Date:   Nov. 11,2014
-#   University: Honk Kong University Science and Technology
+#   University: Hong Kong University Science and Technology
 #      
 #   Envionment: 
 #       Mac OS X 10.9.5
