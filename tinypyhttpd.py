@@ -73,24 +73,28 @@ def startup(port):
 def accept_request(client):
     request = client.recv(1024)
     request = urllib.unquote(request).split('\r\n')
-    method, url, version = request[0].split(' ')
-    print method, url, version
 
-    if method == "GET":
-        cgi = False
-    elif method == "POST":
-        cgi = True
-        query_string = request[request.index("")+1]
+    try:
+        method, url, version = request[0].split(' ')
+        print method, url, version
 
-    path = "htdocs" + url
-    if url == "/":
-        path += "index.html"
+        if method == "GET":
+            cgi = False
+        elif method == "POST":
+            cgi = True
+            query_string = request[request.index("")+1]
 
-    if cgi == False:
-        serve_file(client, path)
-    else:
-        execute_cgi(client, path, method, query_string)
+        path = "htdocs" + url
+        if url == "/":
+            path += "index.html"
 
+        if cgi == False:
+            serve_file(client, path)
+        else:
+            execute_cgi(client, path, method, query_string)
+
+    except:
+        print "[Request Error. Close Client.]" 
 
 ########################################################################
 #   Execute the CGI script.
